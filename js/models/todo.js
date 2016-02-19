@@ -7,5 +7,11 @@ module.exports = Backbone.Model.extend({
        title: '',
        completed: false
    },
+
+   toggle() {
+       this.save({
+          completed: !this.get('completed')
+       });
+   }
     
 });

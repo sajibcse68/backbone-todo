@@ -8,9 +8,18 @@ module.exports = Backbone.Collection.extend({
    model: Todo,
    localStorage: new Backbone.LocalStorage('todos-backbone'),
 
-   yz() {
-      console.log(this.model);
-},
+   completed() {
+      return this.where({ completed: true });
+   },
 
+   remaining() {
+      return this.where({ completed: false });
+   },
+
+   nextOrder() {
+      return this.length ? this.last().get('order') + 1 : 1;
+   },
+
+   comparator: 'order'
 });
 

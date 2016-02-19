@@ -8,7 +8,6 @@ module.exports = Backbone.Router.extend({
      Backbone.Router.prototype.constructor.call(this, options);
      this.todos = options.todos;
      this.filter = options.filter;
-     console.log('in todos constructor');
    },
    routes: {
        '*filter': 'setFilter'
@@ -17,6 +16,6 @@ module.exports = Backbone.Router.extend({
        this.filter.rule = param  || '';
        // console.log('filter is: ', filter);
 
-      this.todos.trigger('filter');
+      // this.todos.trigger('filter');
    }
 });

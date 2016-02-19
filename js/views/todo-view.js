@@ -5,13 +5,17 @@ Backbone.$ = $;
 module.exports = Backbone.View.extend({
    tagName: 'li',
    template: 'item.html',
+
    initialize(options) {
        console.log('options is: ', options);
        this.filter = options.filter;
    },
    events: {
+       'click .toggle': 'toggleCompleted',
+       
 
-   },
+   }
+   ,
    render() {
 
        if(this.model.changed.id !== undefined){
@@ -22,7 +26,13 @@ module.exports = Backbone.View.extend({
        console.log('this.model.toJSON is: ', this.model.toJSON());
        this.$el.html(global.nunjucksEnv.render(this.template, this.model.toJSON()));
        console.log('render');
-       this.$input = this.$('.edit');
+       // this.$input = this.$('.edit');
        return this;
+   },
+
+   toggleCompleted() {
+       this.model.toggle();
    }
+
+
 });
