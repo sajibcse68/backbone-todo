@@ -57,7 +57,7 @@ module.exports = Backbone.View.extend({
     newAttributes() {
         return {
             title: this.$input.val().trim(),
-            // order: this.todos.nextOrder(),
+            order: this.todos.nextOrder(),
             completed: false
         }
     },
@@ -69,7 +69,6 @@ module.exports = Backbone.View.extend({
     },
 
     filterOne(todo) {
-        console.log('todo is: ', todo);
-        // todo.trigger('visible'); // need to dig
+        todo.trigger('visible'); // trigger the todo's 'this.listenTo(this.model, 'visible', this.toggleVisible);'
     }
 });
