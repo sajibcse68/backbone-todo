@@ -21,8 +21,8 @@ module.exports = Backbone.View.extend({
        'keydown .edit': 'revertOnEscape',
        'blur .edit': 'close',
 
-   }
-   ,
+   },
+
    render() {
 
        if(this.model.changed.id !== undefined){
@@ -30,6 +30,8 @@ module.exports = Backbone.View.extend({
        }
 
        this.$el.html(global.nunjucksEnv.render(this.template, this.model.toJSON()));
+       this.$el.toggleClass('completed', this.model.get('completed'));
+       this.toggleVisible();
        this.$input = this.$('.edit');
        return this;
    },
@@ -50,8 +52,7 @@ module.exports = Backbone.View.extend({
 
    edit() {
      this.$el.addClass('editing'); // replace this list with input field
-
-     // this.$input.focus();
+     this.$input.focus();
    },
 
    close() {
@@ -80,7 +81,7 @@ module.exports = Backbone.View.extend({
     revertOnEscape(e) {
         if(e.which === ESC_KEY) {
             this.$el.removeClass('editing');
-            // this.$input.val(this.model.get('title'));
+            this.$input.val(this.model.get('title'));
         }
     },
     clear() {

@@ -9,13 +9,13 @@ module.exports = Backbone.Router.extend({
      this.todos = options.todos;
      this.filter = options.filter;
    },
+
    routes: {
        '*filter': 'setFilter'
    },
+
    setFilter(param) {
        this.filter.rule = param  || '';
-       // console.log('filter is: ', filter);
-
-      // this.todos.trigger('filter');
+       this.todos.trigger('filter');  // trigger todos's filter
    }
 });
